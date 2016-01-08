@@ -1,3 +1,18 @@
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
+if !filereadable(vundle_readme)
+    echo 'Installing Vundle ...'
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/Vundle.vim
+endif
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
 colorscheme molokai " theme style
 
 set backspace=2                       " allow backspacing over everything in insert nc >kkmode
@@ -65,11 +80,7 @@ filetype on                           " enable filetype detection
 filetype indent on                    " enable filetype-specific indenting
 filetype plugin on                    " enable filetype-specific plugins
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-"-----------------------------------------------------------
+"------------------ Plugin List -----------------------------
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
 Plugin 'kien/ctrlp.vim'
@@ -98,14 +109,10 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'pangloss/vim-javascript'
 Plugin 'StanAngeloff/php.vim'
 
-"
-""""""""""" Plugin Setting """""""""""""
+"------------------ Plugin setting -----------------------------
 
 "tag list (show class list)
 nmap <F8> :TagbarToggle<CR>
-
-" set airline
-
 
 "airline
 let g:airline#extensions#tabline#enabled = 1
