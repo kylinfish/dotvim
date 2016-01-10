@@ -76,7 +76,7 @@ xnoremap p pgvy
 
 "-----------------------------------------------------------
 filetype plugin indent on     " required
-filetype on                           " enable filetype detection
+filetype off
 filetype indent on                    " enable filetype-specific indenting
 filetype plugin on                    " enable filetype-specific plugins
 
@@ -196,7 +196,7 @@ hi IndentGuidesEven ctermbg=17
 
 
 "easy motion
-let g:EasyMotion_leader_key = 't'
+let g:EasyMotion_leader_key = 'f'
 
 
 "stanAngleoff/php.vim
