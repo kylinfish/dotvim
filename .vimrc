@@ -161,10 +161,7 @@ let g:rbpt_loadcmd_toggle = 0
 
 
 "" toggle syntax mode"""
-autocmd VimEnter * SyntasticToggleMode " disable syntastic by default
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+""autocmd VimEnter * SyntasticToggleMode " disable syntastic by default
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -173,7 +170,6 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_php_checkers=['php', 'phpmd']
 let g:syntastic_css_checkers=[]
 let g:syntastic_javascript_checkers=['jshint']
-
 
 "replace the current word in all opened buffers
 fun! Replace()
@@ -241,6 +237,3 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplcache_force_omni_patterns')
     let g:neocomplcache_force_omni_patterns = {}
 endif
-let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
