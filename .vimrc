@@ -13,7 +13,7 @@ endif
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-colorscheme molokai " theme style
+colorscheme winyu " theme style
 
 set backspace=2                       " allow backspacing over everything in insert nc >kkmode
 set history=1000                      " keep 1000 lines of command line history
