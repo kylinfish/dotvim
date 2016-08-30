@@ -67,7 +67,7 @@ set fenc=utf-8 enc=utf-8 tenc=utf-8
 " Set cursorline colors
 highlight CursorLine ctermbg=235
 " Set color of number column on cursorline
-highlight CursorLineNR ctermbg=235 ctermfg=white
+highlight CursorLineNR ctermbg=235 ctermfg=green
 
 "---------------  general setting --------------------------
 "back to last edit position
@@ -111,14 +111,14 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'pangloss/vim-javascript'
 Plugin 'StanAngeloff/php.vim'
 
-"------------------ Plugin setting -----------------------------
+"
+""""""""""" Plugin Setting """""""""""""
 
 "tag list (show class list)
 nmap <F8> :TagbarToggle<CR>
 
 "airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'bubblegum'
 let g:airline_powerline_fonts = 1
 
 if !exists('g:airline_symbols')
@@ -127,9 +127,10 @@ endif
 
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#left_alt_sep = '｜'
+let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline#extensions#tabline#buffer_nr_show = 0
@@ -138,7 +139,7 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
-let g:airline_theme='simple'
+let g:airline_theme = 'dark'
 " let g:airline_theme='term'
 " let g:airline_theme='light'
 
