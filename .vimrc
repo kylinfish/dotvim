@@ -77,19 +77,22 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 xnoremap p pgvy
 
 "-----------------------------------------------------------
-filetype plugin indent on     " required
-filetype off
+filetype plugin indent on             " required
+filetype on                           " enable filetype detection
 filetype indent on                    " enable filetype-specific indenting
 filetype plugin on                    " enable filetype-specific plugins
 
-"------------------ Plugin List -----------------------------
-" let Vundle manage Vundle, required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+"-----------------------------------------------------------
+"let Vundle manage Vundle, required
+"
 Plugin 'gmarik/vundle'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'c9s/colorselector.vim'
-Plugin 'marcweber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-ragtag'
@@ -98,24 +101,25 @@ Plugin 'sumpygump/php-documentor-vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'majutsushi/tagbar'
-Plugin 'mattn/emmet-vim'
-Plugin 'joshliao11/vim-snippets'
-Plugin 'garbas/vim-snipmate'
 Plugin 'vim-scripts/OOP-javascript-indentation'
-Plugin 'Shougo/neocomplcache.vim'
-Plugin 'Townk/vim-autoclose'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'pangloss/vim-javascript'
-Plugin 'StanAngeloff/php.vim'
+Plugin 'Shougo/neocomplcache.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tomtom/tlib_vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'marcweber/vim-addon-mw-utils'
+Plugin 'Valloric/MatchTagAlways'
+Plugin 'alvan/vim-closetag'
+Plugin 'vim-scripts/hexHighlight.vim'
 
 "
 """"""""""" Plugin Setting """""""""""""
 
 "tag list (show class list)
-nmap <F8> :TagbarToggle<CR>
+nmap <F1> :TagbarToggle<CR>
 
 "airline
 let g:airline#extensions#tabline#enabled = 1
@@ -148,31 +152,29 @@ au BufRead,BufNewFile *.php inoremap <buffer> <C-X> :call PhpDoc()<CR>
 au BufRead,BufNewFile *.php nnoremap <buffer> <C-X> :call PhpDoc()<CR>
 au BufRead,BufNewFile *.php vnoremap <buffer> <C-x> :call PhpDocRange()<CR>
 
-"indentLine
-let g:indentLine_color_term = 84
-" let g:indentLine_char = '¦'
-let g:indentLine_char = '|'
-
 "CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_clear_cache_on_exit = 0
-
+let g:ctrlp_clear_cache_on_exit = 0     "off refresh
 
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
-
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|vendor|node_modules)$'
 
 "" toggle syntax mode"""
-""autocmd VimEnter * SyntasticToggleMode " disable syntastic by default
+" autocmd VimEnter * SyntasticToggleMode " disable syntastic by default
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_auto_loc_list=1
-let g:syntastic_php_checkers=['php', 'phpmd']
-let g:syntastic_css_checkers=[]
-let g:syntastic_javascript_checkers=['jshint']
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_auto_loc_list=1
+" let g:syntastic_php_checkers=['php', 'phpmd']
+" let g:syntastic_css_checkers=[]
+" let g:syntastic_javascript_checkers=['jshint']
+"
 
 "replace the current word in all opened buffers
 fun! Replace()
@@ -192,34 +194,10 @@ let g:indent_guides_start_level = 3
 hi IndentGuidesOdd  ctermbg=19
 hi IndentGuidesEven ctermbg=17
 
-
-
-"easy motion
-let g:EasyMotion_leader_key = 'f'
-
-
-"stanAngleoff/php.vim
-let php_parent_error_close = 1
-let php_parent_error_open  = 1
-let php_folding = 2
-
-function! PhpSyntaxOverride()
-  hi! def link phpDocTags  phpDefine
-  hi! def link phpDocParam phpType
-endfunction
-
-augroup phpSyntaxOverride
-  autocmd!
-  autocmd FileType php call PhpSyntaxOverride()
-augroup END
-
-
-
 "Auto assigned file to filetype
 autocmd BufNewFile,BufRead *.phtml set filetype=php
 autocmd BufNewFile,BufRead *.html set filetype=html
 autocmd BufNewFile,BufRead *.htm set filetype=html
-
 
 "Shougo/neocomplcache.vim
 let g:neocomplcache_enable_at_startup = 1
@@ -240,3 +218,32 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplcache_force_omni_patterns')
     let g:neocomplcache_force_omni_patterns = {}
 endif
+let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+hi TabLine      ctermfg=Black  ctermbg=2     cterm=NONE
+hi TabLineFill  ctermfg=Black  ctermbg=6     cterm=NONE
+hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
+
+""""""""""" mapping HotKey """""""""""""
+map <C-A> ggVG      " select all
+map <C-E> V%zfzz    " fold section
+map <C-T> yyp       " copy current line and paste
+
+nmap <C-J> <C-W><C-J>
+nmap <C-K> <C-W><C-K>
+nmap <C-H> <C-W><C-H>
+nmap <C-L> <C-W><C-L>
+
+" matchAtag alswas
+let g:mta_use_matchparen_group = 1
+let g:mta_set_default_matchtag_color = 1
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'phtml' : 1,
+    \ 'xml' : 1,
+    \ 'php' : 1,
+    \ 'jinja' : 1,
+    \}
+highlight MatchTag ctermfg=black ctermbg=lightgreen guifg=black guibg=lightgreen
