@@ -27,7 +27,6 @@ set hidden
 set linespace=0
 set nofoldenable
 set number
-set numberwidth=4
 set title
 set showmatch                         " show match () {} []
 set showmode
@@ -52,8 +51,11 @@ set listchars=tab:>-,trail:-
 set hlsearch                          " search highlighting
 set incsearch                         " incremental search
 set t_Co=256
-set nocompatible              " be iMproved, required
+set nocompatible                      " be iMproved, required
 set laststatus=2
+
+set splitright                        " new window is put right of the current one
+set splitbelow                        " new window from split is below the current one
 
 syntax on                             " syntax highlight
 syntax enable
