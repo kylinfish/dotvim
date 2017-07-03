@@ -1,19 +1,5 @@
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-if !filereadable(vundle_readme)
-    echo 'Installing Vundle ...'
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/Vundle.vim
-endif
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
 colorscheme winyu " theme style
+" colorscheme Tomorrow-Night-Bright " theme style
 
 set backspace=2                       " allow backspacing over everything in insert nc >kkmode
 set history=1000                      " keep 1000 lines of command line history
@@ -57,12 +43,14 @@ set laststatus=2
 set splitright                        " new window is put right of the current one
 set splitbelow                        " new window from split is below the current one
 
+set mouse=nv                          " only use mouse in normal, visual mode
+
 syntax on                             " syntax highlight
 syntax enable
 
 " file encoding
 set encoding=utf-8
-set fenc=utf-8 enc=utf-8 tenc=utf-8
+" set fenc=utf-8 enc=utf-8 tenc=utf-8
 
 " Set cursorline colors
 highlight CursorLine ctermbg=235
@@ -90,7 +78,6 @@ call vundle#rc()
 "let Vundle manage Vundle, required
 "
 Plugin 'gmarik/vundle'
-Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'c9s/colorselector.vim'
 Plugin 'tpope/vim-surround'
@@ -114,6 +101,21 @@ Plugin 'marcweber/vim-addon-mw-utils'
 Plugin 'Valloric/MatchTagAlways'
 Plugin 'alvan/vim-closetag'
 Plugin 'vim-scripts/hexHighlight.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'IN3D/vim-raml'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'trevordmiller/nova-vim'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
+
+"" js
+Plugin 'othree/html5.vim'
+Plugin 'othree/yajs.vim'
+Plugin 'gavocanov/vim-js-indent'
+
 
 "
 """"""""""" Plugin Setting """""""""""""
@@ -143,38 +145,12 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
-let g:airline_theme = 'dark'
-" let g:airline_theme='term'
-" let g:airline_theme='light'
+let g:airline_theme='term'
 
 "php-doc-vim
 au BufRead,BufNewFile *.php inoremap <buffer> <C-X> :call PhpDoc()<CR>
 au BufRead,BufNewFile *.php nnoremap <buffer> <C-X> :call PhpDoc()<CR>
 au BufRead,BufNewFile *.php vnoremap <buffer> <C-x> :call PhpDocRange()<CR>
-
-"CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_clear_cache_on_exit = 0     "off refresh
-
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|vendor|node_modules)$'
-
-"" toggle syntax mode"""
-" autocmd VimEnter * SyntasticToggleMode " disable syntastic by default
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_auto_loc_list=1
-" let g:syntastic_php_checkers=['php', 'phpmd']
-" let g:syntastic_css_checkers=[]
-" let g:syntastic_javascript_checkers=['jshint']
-"
 
 "replace the current word in all opened buffers
 fun! Replace()
@@ -185,6 +161,13 @@ fun! Replace()
     :unlet! s:word
 
 endfun
+
+"nerdtree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+map <C-o> :NERDTreeToggle<CR>
 
 "vim-indent-guides
 let g:indent_guides_auto_colors = 0
@@ -209,6 +192,7 @@ if !exists('g:neocomplcache_keyword_patterns')
     let g:neocomplcache_keyword_patterns = {}
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
 "let g:neocomplcache_enable_auto_select = 1
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -222,9 +206,19 @@ let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-hi TabLine      ctermfg=Black  ctermbg=2     cterm=NONE
-hi TabLineFill  ctermfg=Black  ctermbg=6     cterm=NONE
-hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
+" easymotion
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+
+"---  更改快捷键
+map q <Plug>(easymotion-prefix)
+map qf <Plug>(easymotion-lineforward)
+map qs <Plug>(easymotion-f)
+map qj <Plug>(easymotion-j)
+map qk <Plug>(easymotion-k)
+map qh <Plug>(easymotion-linebackward)
+" 忽略大小写
+let g:EasyMotion_smartcase = 1
 
 """"""""""" mapping HotKey """""""""""""
 map <C-A> ggVG      " select all
@@ -235,6 +229,18 @@ nmap <C-J> <C-W><C-J>
 nmap <C-K> <C-W><C-K>
 nmap <C-H> <C-W><C-H>
 nmap <C-L> <C-W><C-L>
+
+" sava file
+inoremap <C-s> <esc>:w<cr>a
+nnoremap <C-s> :w<cr>
+
+" map <D-t> :tabnew<CR>
+" map <D-w> :tabclose<CR>
+
+
+" set foldcolumn=2
+hi foldcolumn  ctermbg=235 ctermfg=white
+
 
 " matchAtag alswas
 let g:mta_use_matchparen_group = 1
@@ -247,3 +253,51 @@ let g:mta_filetypes = {
     \ 'jinja' : 1,
     \}
 highlight MatchTag ctermfg=black ctermbg=lightgreen guifg=black guibg=lightgreen
+
+"" " Align GitHub-flavored Markdown tables
+au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
+
+
+" tagbar
+" autocmd VimEnter * nested :TagbarOpen
+" autocmd FileType * nested :call tagbar#autoopen(0)
+
+
+" set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
+set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline\ Nerd\ Font\ Complete\ 16
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_airline_statusline = 1
+" let g:webdevicons_enable_ctrlp = 1
+
+
+"" fzf
+let g:fzf_colors =
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Type'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Identifier'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Advanced customization using autoload functions
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'down': '5%'})
+nnoremap <silent> <C-p> :Files<CR>
