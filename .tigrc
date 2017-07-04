@@ -1,0 +1,32 @@
+# .tigrc - tig configuration file
+# http://jonas.nitro.dk/tig/tigrc.5.html
+#
+# Synopsis:
+# set <variable> = <value>
+# bind <keymap> <key> <action>
+# color <area> <fgcolor> <bgcolor> [attributes]
+# source <path>
+#
+
+#######################################
+# Visualization
+#######################################
+
+set author-width = 14
+set filename-width = 16
+set id-width = 14
+set blame-options = -C -C -C
+set horizontal-scroll = 33%
+set read-git-colors = no
+set show-filename = always
+set show-date = relative
+set show-refs = yes
+set show-id = yes
+set show-rev-graph = yes
+set show-changes = yes
+set vertical-split = yes
+set split-view-height = 70%
+set status-untracked-dirs = yes
+set ignore-space = some
+set commit-order = topo
+set wrap-lines = no
