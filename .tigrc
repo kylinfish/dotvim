@@ -1,32 +1,27 @@
 # .tigrc - tig configuration file
 # http://jonas.nitro.dk/tig/tigrc.5.html
-#
+
 # Synopsis:
 # set <variable> = <value>
 # bind <keymap> <key> <action>
 # color <area> <fgcolor> <bgcolor> [attributes]
 # source <path>
-#
 
-#######################################
-# Visualization
-#######################################
 
-set author-width = 14
-set filename-width = 16
-set id-width = 14
-set blame-options = -C -C -C
-set horizontal-scroll = 33%
-set read-git-colors = no
-set show-filename = always
-set show-date = relative
-set show-refs = yes
-set show-id = yes
-set show-rev-graph = yes
-set show-changes = yes
-set vertical-split = yes
-set split-view-height = 70%
-set status-untracked-dirs = yes
-set ignore-space = some
-set commit-order = topo
-set wrap-lines = no
+set vertical-split               = yes
+set split-view-width             = 70%
+set show-changes                 = yes        # Show changes commits in the main view?
+set wrap-lines                   = no         # Wrap long lines in pager views?
+set line-graphics                = default    # Enum: ascii, default, utf-8
+set show-notes                   = yes        # When non-bool passed as `--show-notes=...` (diff)
+set status-show-untracked-dirs   = yes        # Show files in untracked directories? (status)
+set status-show-untracked-files  = yes        # Show untracked files?
+
+# mode-view
+set main-view    = id:width:14 line-number:no,interval=5 id:no date:relative author:full commit-title:yes,graph,refs,overflow=no
+set blame-view   = date:default author:full id:yes,color line-number:no,interval=5 text
+set grep-view    = file-name:no line-number:yes,interval=1 text
+set refs-view    = line-number:no id:no date:default author:full ref commit-title
+set stash-view   = line-number:no,interval=5 id:no date:default author:full commit-title
+set status-view  = line-number:no,interval=5 status:long file-name
+set tree-view    = line-number:no,interval=5 mode author:full file-size date:default id:no file-name
