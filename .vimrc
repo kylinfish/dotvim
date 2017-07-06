@@ -78,7 +78,8 @@ call vundle#rc()
 "let Vundle manage Vundle, required
 "
 Plugin 'gmarik/vundle'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'c9s/colorselector.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tmhedberg/matchit'
@@ -135,17 +136,10 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#left_alt_sep = '｜'
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#branch#enabled = 1
 
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-
-let g:airline_theme='term'
+let g:airline_theme='badwolf'
 
 "php-doc-vim
 au BufRead,BufNewFile *.php inoremap <buffer> <C-X> :call PhpDoc()<CR>
