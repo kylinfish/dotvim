@@ -11,5 +11,5 @@
 ## Theme/Style
 * vim colortheme: [winyu.vim](https://github.com/kylinfish/dotvim/blob/master/colors/winyu.vim)
 * vim setting: [.vimrc](https://github.com/kylinfish/dotvim/blob/master/.vimrc)
-* tmux: [.tmux.conf.local](https://github.com/kylinfish/dotvim/blob/master/.tmux.conf.local)
+* tmux: [.tmux.conf.local](https://github.com/kylinfish/dotvim/blob/master/.tmux.conf.local), from: [gpakosz](https://github.com/gpakosz/.tmux#enabling-the-powerline-look)
 * itermcolos: [winyu.itermcolors](https://github.com/kylinfish/dotvim/blob/master/winyu.itermcolors)
