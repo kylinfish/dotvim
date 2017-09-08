@@ -20,13 +20,14 @@ hi Search           ctermfg=0     ctermbg=121    cterm=underline guifg=black    
 hi CursorLine       ctermfg=NONE  ctermbg=236    cterm=NONE      guifg=NONE      guibg=#405160 gui=NONE
 hi CursorColumn     ctermfg=NONE  ctermbg=236    cterm=NONE      guifg=NONE      guibg=#405160 gui=NONE
 hi ColorColumn      ctermfg=NONE  ctermbg=59     cterm=NONE      guifg=NONE      guibg=#405160 gui=NONE
-hi LineNr           ctermfg=223   ctermbg=NONE   cterm=NONE      guifg=#929ba1   guibg=#2b3e50 gui=NONE
+hi LineNr           ctermfg=223   ctermbg=23   cterm=NONE        guifg=#5c98cd   guibg=#2b3e50 gui=NONE
 hi VertSplit        ctermfg=60    ctermbg=60     cterm=NONE      guifg=#66747f   guibg=#66747f gui=NONE
 hi MatchParen       ctermfg=203   ctermbg=NONE   cterm=underline guifg=#ff6541   guibg=NONE    gui=underline
 hi StatusLine       ctermfg=231   ctermbg=60     cterm=bold      guifg=#f8f8f2   guibg=#66747f gui=bold
 hi StatusLineNC     ctermfg=231   ctermbg=60     cterm=NONE      guifg=#f8f8f2   guibg=#66747f gui=NONE
-hi Pmenu            ctermfg=NONE  ctermbg=NONE   cterm=NONE      guifg=NONE      guibg=#19242f gui=NONE
-hi PmenuSel         ctermfg=NONE  ctermbg=16     cterm=NONE      guifg=NONE      guibg=#66747f gui=NONE
+hi Pmenu            ctermfg=15    ctermbg=236                    guifg=#f8f8f8   guibg=#35322d
+hi PmenuSel         cterm=bold    ctermfg=16     ctermbg=39      guifg=#000000   guibg=#0a9dff gui=bold
+
 hi IncSearch        ctermfg=23    ctermbg=186    cterm=NONE      guifg=#2b3e50   guibg=#e6db74 gui=NONE
 hi Directory        ctermfg=177   ctermbg=NONE   cterm=NONE      guifg=#ca94ff   guibg=NONE    gui=NONE
 hi Folded           ctermfg=68    ctermbg=23     cterm=NONE      guifg=#5c98cd   guibg=#2b3e50 gui=NONE
@@ -39,7 +40,7 @@ hi TabLineSel       ctermfg=8     ctermbg=14     cterm=NONE
 hi Normal           ctermfg=231   ctermbg=0      cterm=NONE      guifg=#f8f8f2   guibg=#2b3e50 gui=NONE
 hi Boolean          ctermfg=177   ctermbg=NONE   cterm=NONE      guifg=#ca94ff   guibg=NONE    gui=NONE
 hi Character        ctermfg=177   ctermbg=NONE   cterm=NONE      guifg=#ca94ff   guibg=NONE    gui=NONE
-hi Comment          term=reverse  ctermfg=23                     guifg=#2b3e50   guibg=#e6db74
+hi Comment          ctermfg=61    ctermbg=NONE   cterm=bold,underline
 hi Conditional      ctermfg=203   ctermbg=NONE   cterm=NONE      guifg=#ff6541   guibg=NONE    gui=NONE
 hi Constant         ctermfg=NONE  ctermbg=NONE   cterm=NONE      guifg=NONE      guibg=NONE    gui=NONE
 hi Define           ctermfg=203   ctermbg=NONE   cterm=NONE      guifg=#ff6541   guibg=NONE    gui=NONE
@@ -67,7 +68,7 @@ hi String           ctermfg=186   ctermbg=NONE   cterm=NONE      guifg=#e6db74  
 hi Tag              ctermfg=203   ctermbg=NONE   cterm=NONE      guifg=#ff6541   guibg=NONE    gui=NONE
 hi Title            ctermfg=231   ctermbg=NONE   cterm=bold      guifg=#f8f8f2   guibg=NONE    gui=bold
 hi Todo             ctermfg=68    ctermbg=NONE   cterm=inverse,bold guifg=#5c98cd guibg=NONE   gui=inverse,bold
-hi Type             ctermfg=NONE  ctermbg=NONE   cterm=NONE      guifg=NONE      guibg=NONE    gui=NONE
+hi Type             ctermfg=212   ctermbg=NONE   cterm=NONE      guifg=#ff80ff   guibg=NONE    gui=NONE
 hi Underlined       ctermfg=NONE  ctermbg=NONE   cterm=underline guifg=NONE      guibg=NONE    gui=underline
 
 "HTML
