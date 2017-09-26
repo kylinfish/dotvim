@@ -39,6 +39,8 @@ set incsearch                         " incremental search
 set t_Co=256
 set nocompatible                      " be iMproved, required
 set laststatus=2
+set colorcolumn=120                   " set width hint line
+set autoindent
 
 set splitright                        " new window is put right of the current one
 set splitbelow                        " new window from split is below the current one
@@ -56,6 +58,7 @@ set encoding=utf-8
 highlight CursorLine ctermbg=235
 " Set color of number column on cursorline
 highlight CursorLineNR ctermbg=235 ctermfg=green
+highlight ColorColumn ctermbg=24
 
 "---------------  general setting --------------------------
 "back to last edit position
