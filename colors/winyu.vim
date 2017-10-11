@@ -15,13 +15,13 @@ endif
 let g:colors_name = "winyu"
 
 hi Cursor           cterm=NONE                                  guifg=#2b3e50    guibg=#f8f8f2
-hi Visual           term=reverse  ctermbg=12                                     gui=undercurl guisp=Blue
-hi Search           ctermfg=0     ctermbg=121    cterm=underline guifg=black     guibg=lightgreen    gui=underline
+hi Visual           term=reverse  ctermbg=238                                     gui=undercurl guisp=Blue
+hi Search           ctermfg=227   ctermbg=59     term=reverse    guifg=#FFEE68   guibg=#696567
 hi CursorLine       ctermfg=NONE  ctermbg=236    cterm=NONE      guifg=NONE      guibg=#405160 gui=NONE
 hi CursorColumn     ctermfg=NONE  ctermbg=236    cterm=NONE      guifg=NONE      guibg=#405160 gui=NONE
-hi ColorColumn      ctermfg=NONE  ctermbg=59     cterm=NONE      guifg=NONE      guibg=#405160 gui=NONE
-hi LineNr           ctermfg=223   ctermbg=23   cterm=NONE        guifg=#5c98cd   guibg=#2b3e50 gui=NONE
-hi VertSplit        ctermfg=60    ctermbg=60     cterm=NONE      guifg=#66747f   guibg=#66747f gui=NONE
+hi ColorColumn      ctermfg=NONE  ctermbg=17     cterm=NONE      guifg=NONE      guibg=#405160 gui=NONE
+hi LineNr           ctermfg=240   ctermbg=none   cterm=NONE      guifg=#5c98cd   guibg=#2b3e50 gui=NONE
+hi VertSplit        ctermfg=65    ctermbg=60     cterm=NONE      guifg=#66747f   guibg=#66747f gui=NONE
 hi MatchParen       ctermfg=203   ctermbg=NONE   cterm=underline guifg=#ff6541   guibg=NONE    gui=underline
 hi StatusLine       ctermfg=231   ctermbg=60     cterm=bold      guifg=#f8f8f2   guibg=#66747f gui=bold
 hi StatusLineNC     ctermfg=231   ctermbg=60     cterm=NONE      guifg=#f8f8f2   guibg=#66747f gui=NONE
@@ -42,8 +42,8 @@ hi Boolean          ctermfg=177   ctermbg=NONE   cterm=NONE      guifg=#ca94ff  
 hi Character        ctermfg=177   ctermbg=NONE   cterm=NONE      guifg=#ca94ff   guibg=NONE    gui=NONE
 hi Comment          ctermfg=61    ctermbg=NONE   cterm=bold,underline
 hi Conditional      ctermfg=203   ctermbg=NONE   cterm=NONE      guifg=#ff6541   guibg=NONE    gui=NONE
-hi Constant         ctermfg=NONE  ctermbg=NONE   cterm=NONE      guifg=NONE      guibg=NONE    gui=NONE
-hi Define           ctermfg=203   ctermbg=NONE   cterm=NONE      guifg=#ff6541   guibg=NONE    gui=NONE
+hi Constant         ctermfg=220   ctermbg=NONE   cterm=NONE      guifg=NONE      guibg=NONE    gui=NONE
+hi Define           ctermfg=212   ctermbg=NONE   cterm=NONE      guifg=#ff6541   guibg=NONE    gui=NONE
 hi DiffAdd          ctermfg=231   ctermbg=64     cterm=bold      guifg=#f8f8f2   guibg=#478815 gui=bold
 hi DiffDelete       ctermfg=88    ctermbg=NONE   cterm=NONE      guifg=#8c0c10   guibg=NONE    gui=NONE
 hi DiffChange       ctermfg=231   ctermbg=23     cterm=NONE      guifg=#f8f8f2   guibg=#26446c gui=NONE
@@ -51,8 +51,8 @@ hi DiffText         ctermfg=231   ctermbg=24     cterm=bold      guifg=#f8f8f2  
 hi ErrorMsg         ctermfg=231   ctermbg=197    cterm=NONE      guifg=#f8f8f0   guibg=#f92672 gui=NONE
 hi WarningMsg       ctermfg=231   ctermbg=197    cterm=NONE      guifg=#f8f8f0   guibg=#f92672 gui=NONE
 hi Float            ctermfg=177   ctermbg=NONE   cterm=NONE      guifg=#ca94ff   guibg=NONE    gui=NONE
-hi Function         ctermfg=71    ctermbg=NONE   cterm=NONE      guifg=#72c05d   guibg=NONE    gui=NONE
-hi Identifier       ctermfg=81    ctermbg=NONE   cterm=NONE      guifg=#66d9ef   guibg=NONE    gui=italic
+hi Function         ctermfg=81    ctermbg=NONE   cterm=NONE      guifg=#72c05d   guibg=NONE    gui=NONE
+hi Identifier       ctermfg=43    ctermbg=NONE   cterm=NONE      guifg=#79e263   guibg=#79e263
 hi Keyword          ctermfg=203   ctermbg=NONE   cterm=NONE      guifg=#ff6541   guibg=NONE    gui=NONE
 hi Label            ctermfg=186   ctermbg=NONE   cterm=NONE      guifg=#e6db74   guibg=NONE    gui=NONE
 hi NonText          ctermfg=74    ctermbg=0      cterm=NONE      guifg=#61bbc8   guibg=#354758 gui=NONE
@@ -97,7 +97,7 @@ hi cssPseudoClassId   ctermfg=71    ctermbg=NONE  cterm=NONE      guifg=#72c05d 
 hi cssClassName       ctermfg=71    ctermbg=NONE  cterm=NONE      guifg=#72c05d    guibg=NONE  gui=NONE
 hi cssValueLength     ctermfg=177   ctermbg=NONE  cterm=NONE      guifg=#ca94ff    guibg=NONE  gui=NONE
 hi cssCommonAttr      ctermfg=81    ctermbg=NONE  cterm=NONE      guifg=#66d9ef    guibg=NONE  gui=NONE
-hi cssBraces          ctermfg=NONE  ctermbg=NONE  cterm=NONE      guifg=NONE       guibg=NONE  gui=NONE
+hi cssBraces          ctermfg=11    ctermbg=NONE  cterm=NONE      guifg=NONE       guibg=NONE  gui=NONE
 
 "Python
 hi pythonStatement    ctermfg=81   ctermbg=NONE  cterm=NONE guifg=#66d9ef    guibg=NONE  gui=italic
