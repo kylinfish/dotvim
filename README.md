@@ -1,6 +1,9 @@
 # dotvim
 ![screenshop](https://github.com/kylinfish/dotvim/blob/master/screenshot.png)
 
+## Article Reference:
+- https://kylinyu.win/unix-like-develop-env/
+
 ## Develop Environment
 * shell: zsh, bash
 * tmux: terminal multiplexer
