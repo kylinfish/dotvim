@@ -1,0 +1,45 @@
+[user]
+    name =
+    email =
+
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore_global
+
+[push]
+    default = matching
+
+[alias]
+    cm = commit -a
+    br = branch
+    st = stash
+    co = checkout
+    cp = cherry-pick
+    lg  = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+    lg1 = log --graph --date=iso --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset'
+
+
+[color]
+    ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+
+[color "branch"]
+    current = yellow bold
+    remote = cyan bold
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = red bold
+
+[diff]
+    tool = vimdiff
