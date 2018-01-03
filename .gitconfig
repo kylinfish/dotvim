@@ -38,7 +38,7 @@
 
 [color "status"]
     added = green bold
-    changed = yellow bold
+    changed = magenta bold
     untracked = red bold
 
 [diff]
