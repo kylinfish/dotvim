@@ -45,6 +45,15 @@ set autoindent
 set splitright                        " new window is put right of the current one
 set splitbelow                        " new window from split is below the current one
 
+
+set ttyfast                           " send more chars while redrawing
+set lazyredraw                        " speedup vim
+set timeoutlen=1000
+set ttimeoutlen=0
+
+set noswapfile
+
+
 set mouse=nv                          " only use mouse in normal, visual mode
 
 syntax on                             " syntax highlight
