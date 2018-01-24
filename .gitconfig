@@ -1,6 +1,6 @@
 [user]
-    name =
-    email =
+	name = win
+	email = win@pixnet.tw
 
 [core]
     editor = vim
