@@ -123,6 +123,8 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'trevordmiller/nova-vim'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
+Plugin 'matze/vim-move'
+
 
 "" js
 Plugin 'othree/html5.vim'
@@ -247,6 +249,8 @@ nnoremap <C-s> :w<cr>
 " set foldcolumn=2
 hi foldcolumn  ctermbg=235 ctermfg=white
 
+" vim-move
+let g:move_key_modifier = 'C'
 
 " matchAtag alswas
 let g:mta_use_matchparen_group = 1
