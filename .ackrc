@@ -1,7 +1,11 @@
 --color
+--ignore-case
+--sort-files
 
 --ignore-dir=vendor/
 --ignore-dir=node_modules/
+--ignore-dir=.git
+--ignore-dir=.svn
 
 --type-add=php:ext:phtml,phps
 
