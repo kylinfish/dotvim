@@ -40,7 +40,7 @@ hi TabLineSel       ctermfg=8     ctermbg=14     cterm=NONE
 hi Normal           ctermfg=231   ctermbg=0      cterm=NONE      guifg=#f8f8f2   guibg=#2b3e50 gui=NONE
 hi Boolean          ctermfg=177   ctermbg=NONE   cterm=NONE      guifg=#ca94ff   guibg=NONE    gui=NONE
 hi Character        ctermfg=177   ctermbg=NONE   cterm=NONE      guifg=#ca94ff   guibg=NONE    gui=NONE
-hi Comment          ctermfg=61    ctermbg=NONE   cterm=bold,underline
+hi Comment          ctermfg=13    ctermbg=NONE   cterm=underline                 guibg=NONE    gui=NONE
 hi Conditional      ctermfg=203   ctermbg=NONE   cterm=NONE      guifg=#ff6541   guibg=NONE    gui=NONE
 hi Constant         ctermfg=220   ctermbg=NONE   cterm=NONE      guifg=NONE      guibg=NONE    gui=NONE
 hi Define           ctermfg=212   ctermbg=NONE   cterm=NONE      guifg=#ff6541   guibg=NONE    gui=NONE
