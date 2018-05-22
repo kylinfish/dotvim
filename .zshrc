@@ -42,6 +42,8 @@ alias tat='tmux attach -t'
 
 ## path
 alias towork='cd ~/work/'
+alias togit='cd ~/github'
+alias topix='cd ~/pixnet'
 alias tobe='cd ~/pixnet/be/api/behavior.pixplug.in'
 
 ## git
