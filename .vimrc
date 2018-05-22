@@ -125,6 +125,8 @@ Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 Plugin 'matze/vim-move'
 
+Plugin 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
+
 
 "" js
 Plugin 'othree/html5.vim'
