@@ -69,22 +69,29 @@ alias klog='kubectl logs -f --tail=5'
 alias kexec='kubectl exec -it'
 alias kpods='kubectl get pods'
 
+# PIXNET
+alias ssha='ssh win@aqua.srv.pixnet'
+alias sshirc='ssh win@irc.pixnet.tw -p222'
+alias irc='mosh --ssh="ssh -p 222" win@irc.pixnet.tw'
+alias aqua='mosh --ssh="ssh" win@aqua.srv.pixnet'
+alias phab='php /Users/win/pixnet/phabricommit'
+
 
 bindkey -e
-bindkey '[C' forward-word
-bindkey '[D' backward-word
+bindkey "\e\eOD" backward-word
+bindkey "\e\eOC" forward-word
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
 export PATH="/usr/local/sbin:$PATH"
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/win/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/win/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/win/Documents/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/win/Documents/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/win/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/win/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/win/Documents/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/win/Documents/google-cloud-sdk/completion.zsh.inc'; fi
