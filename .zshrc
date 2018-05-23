@@ -61,7 +61,7 @@ alias pa='php artisan'
 alias gpr='git pull --rebase origin master'
 alias gpv='git pull --rebase origin master'
 
-alias composer="php -d allow_url_fopen=On /usr/local/bin/composer.phar"
+alias composer="/usr/local/bin/composer.phar"
 alias composerload="composer dump-autoload"
 
 # k8s
