@@ -15,9 +15,11 @@ export LANG=en_US.UTF-8
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export TERM="xterm-256color"
-export PATH="/Users/win/.composer/vendor/bin/:$PATH"
-export PAGER="most -s"
+# export PAGER="most -s"
 
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+export PATH="/Users/win/.composer/vendor/bin/:$PATH"
 
 # aliases
 alias a='ack'
@@ -25,8 +27,8 @@ alias tmux="tmux -2"
 alias today="date '+%Y%m%d'"
 alias h='history'
 alias g='grep -rin'
-alias l='ls -FGS'
-alias ll="ls -ahlF"
+alias l='ls -FGS|color'
+alias ll='ls -ahlF|color'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -40,12 +42,19 @@ alias rm='rm -i'
 alias dir='ls -l'
 alias c='clear'
 alias tat='tmux attach -t'
+alias lcat='lolcat'
+
+## PHP
+alias lumen='php -S localhost:8080 public/index.php'
+alias pa='php artisan'
+alias phpunit='./vendor/bin/phpunit'
 
 ## path
 alias towork='cd ~/work/'
 alias togit='cd ~/github'
 alias topix='cd ~/pixnet'
-alias tobe='cd ~/pixnet/be/api/behavior.pixplug.in'
+alias tobe='cd ~/pixnet/pixbehavior/api/behavior.pixplug.in'
+
 
 ## git
 alias gst='git status'
@@ -57,11 +66,10 @@ alias gco='git checkout'
 alias gpu='git pull'
 alias gcm='git commit -m'
 alias amend='git commit --amend'
-alias pa='php artisan'
 alias gpr='git pull --rebase origin master'
 alias gpv='git pull --rebase origin master'
 
-alias composer="/usr/local/bin/composer.phar"
+alias composer="/usr/local/bin/composer"
 alias composerload="composer dump-autoload"
 
 # k8s
@@ -84,11 +92,8 @@ bindkey "\e\eOC" forward-word
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
-export PATH="/usr/local/sbin:$PATH"
 source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-export PATH="/usr/local/opt/gettext/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/win/Documents/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/win/Documents/google-cloud-sdk/path.zsh.inc'; fi
