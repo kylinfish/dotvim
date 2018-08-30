@@ -29,6 +29,10 @@ alias h='history'
 alias g='grep -rin'
 alias l='ls -FGS|color'
 alias ll='ls -ahlF|color'
+
+alias cat='bat'
+alias help='tldr'
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -48,6 +52,8 @@ alias lcat='lolcat'
 alias lumen='php -S localhost:8080 public/index.php'
 alias pa='php artisan'
 alias phpunit='./vendor/bin/phpunit'
+alias composer="/usr/local/bin/composer"
+alias composerload="composer dump-autoload"
 
 ## path
 alias towork='cd ~/work/'
@@ -68,9 +74,6 @@ alias gcm='git commit -m'
 alias amend='git commit --amend'
 alias gpr='git pull --rebase origin master'
 alias gpv='git pull --rebase origin master'
-
-alias composer="/usr/local/bin/composer"
-alias composerload="composer dump-autoload"
 
 # k8s
 alias klog='kubectl logs -f --tail=5'
@@ -100,3 +103,7 @@ if [ -f '/Users/win/Documents/google-cloud-sdk/path.zsh.inc' ]; then source '/Us
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/win/Documents/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/win/Documents/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Local MySQL
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
