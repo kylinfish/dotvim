@@ -6,7 +6,7 @@ set history=1000                      " keep 1000 lines of command line history
 set undolevels=100
 set ruler                             " show the cursor position all the time
 set autoread                          " auto read when file is changed from outside
-set wrap
+set nowrap
 set linebreak
 set nolist
 set hidden
@@ -36,24 +36,20 @@ set list
 set listchars=tab:>-,trail:-
 set hlsearch                          " search highlighting
 set incsearch                         " incremental search
-set t_Co=256
+set termguicolors
 set nocompatible                      " be iMproved, required
 set laststatus=2
 set colorcolumn=120                   " set width hint line
 set autoindent
+set scrolloff=999
 
 set splitright                        " new window is put right of the current one
 set splitbelow                        " new window from split is below the current one
-
-
 set ttyfast                           " send more chars while redrawing
 set lazyredraw                        " speedup vim
 set timeoutlen=1000
 set ttimeoutlen=0
-
 set noswapfile
-
-
 set mouse=nv                          " only use mouse in normal, visual mode
 
 syntax on                             " syntax highlight
@@ -231,22 +227,27 @@ map qh <Plug>(easymotion-linebackward)
 let g:EasyMotion_smartcase = 1
 
 """"""""""" mapping HotKey """""""""""""
-map <C-A> ggVG      " select all
-map <C-E> V%zfzz    " fold section
-map <C-T> yyp       " copy current line and paste
+nmap <C-A> ggVG      " select all
+nmap <C-E> V%zfzz    " fold section
+nmap <C-T> yyp       " copy current line and paste
 
 nmap <C-J> <C-W><C-J>
 nmap <C-K> <C-W><C-K>
 nmap <C-H> <C-W><C-H>
 nmap <C-L> <C-W><C-L>
 
+nnoremap<Tab> :tabn<CR>
+nnoremap<S-Tab> :tabp<CR>
+nnoremap<S-X> :tabclose<CR>
+
+let mapleader=" "
+nnoremap <leader>l 30zl
+nnoremap <leader>h 30zh
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
 " sava file
 inoremap <C-s> <esc>:w<cr>a
 nnoremap <C-s> :w<cr>
-
-" map <D-t> :tabnew<CR>
-" map <D-w> :tabclose<CR>
-
 
 " set foldcolumn=2
 hi foldcolumn  ctermbg=235 ctermfg=white
