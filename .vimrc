@@ -1,5 +1,4 @@
-colorscheme winyu " theme style
-" colorscheme Tomorrow-Night-Bright " theme style
+" colorscheme winyu " theme style
 
 set backspace=2                       " allow backspacing over everything in insert nc >kkmode
 set history=1000                      " keep 1000 lines of command line history
@@ -120,7 +119,10 @@ Plugin 'trevordmiller/nova-vim'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 Plugin 'matze/vim-move'
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
 
+Plugin 'hzchirs/vim-material'
 Plugin 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 
 
@@ -151,7 +153,7 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#branch#enabled = 1
 
-let g:airline_theme='badwolf'
+let g:airline_theme='kolor'
 
 "php-doc-vim
 au BufRead,BufNewFile *.php inoremap <buffer> <C-X> :call PhpDoc()<CR>
