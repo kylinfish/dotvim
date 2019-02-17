@@ -316,3 +316,31 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'down': '5%'})
 nnoremap <silent> <C-p> :Files<CR>
+
+
+" 顯示當前 Theme Highlighting
+nnoremap <leader><leader>x :call SyntaxItem()<CR>
+function! SyntaxItem()
+    echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+                \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+                \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+endfunction
+
+" 縮放視窗
+nnoremap <silent><leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent><leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+
+
+" 覆蓋主題設定
+let g:material_style='oceanic'
+colorscheme vim-material
+highlight Comment guibg='#525975' guifg='#0F111A'
+
+
+" 移除當前所有空白
+function! RemoveTrailingSpace()
+  %s/\s\+$//e
+endfunction
+nnoremap <leader><leader>rt :call RemoveTrailingSpace()<CR>
+
+set list lcs=tab:\|\ " tab indent guide
