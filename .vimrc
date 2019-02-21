@@ -344,3 +344,7 @@ endfunction
 nnoremap <leader><leader>rt :call RemoveTrailingSpace()<CR>
 
 set list lcs=tab:\|\ " tab indent guide
+
+" 編譯
+autocmd FileType java map<Leader>c :!javac "%:p" && java -cp "%:p:h" "%:t:r" <CR>
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
