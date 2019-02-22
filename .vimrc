@@ -1,4 +1,4 @@
-" colorscheme winyu " theme style
+colorscheme winyu
 
 set backspace=2                       " allow backspacing over everything in insert nc >kkmode
 set history=1000                      " keep 1000 lines of command line history
@@ -17,7 +17,6 @@ set showmatch                         " show match () {} []
 set showmode
 set nobomb                            " no BOM(Byte Order Mark)
 set nostartofline
-set laststatus=2
 set clipboard+=unnamed
 set showtabline=2                     " always show tab
 set wildmode=longest,list             " use emacs-style tab completion when selecting files, etc
@@ -35,13 +34,12 @@ set list
 set listchars=tab:>-,trail:-
 set hlsearch                          " search highlighting
 set incsearch                         " incremental search
-set termguicolors
+set t_Co=256
 set nocompatible                      " be iMproved, required
 set laststatus=2
 set colorcolumn=120                   " set width hint line
 set autoindent
-set scrolloff=999
-
+"set scrolloff=999                     " like always zz
 set splitright                        " new window is put right of the current one
 set splitbelow                        " new window from split is below the current one
 set ttyfast                           " send more chars while redrawing
@@ -50,95 +48,153 @@ set timeoutlen=1000
 set ttimeoutlen=0
 set noswapfile
 set mouse=nv                          " only use mouse in normal, visual mode
+set encoding=utf-8
 
 syntax on                             " syntax highlight
 syntax enable
 
-" file encoding
-set encoding=utf-8
-" set fenc=utf-8 enc=utf-8 tenc=utf-8
-
-" Set cursorline colors
-highlight CursorLine ctermbg=235
-" Set color of number column on cursorline
-highlight CursorLineNR ctermbg=235 ctermfg=green
-highlight ColorColumn ctermbg=24
-
-"---------------  general setting --------------------------
-"back to last edit position
-au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+" 強制指定 filetype
+autocmd BufNewFile,BufRead *.phtml set filetype=php
+autocmd BufNewFile,BufRead *.html set filetype=html
+autocmd BufNewFile,BufRead *.htm set filetype=html
 
 " unchange cllipboard
 xnoremap p pgvy
 
-"-----------------------------------------------------------
-filetype plugin indent on             " required
-filetype on                           " enable filetype detection
-filetype indent on                    " enable filetype-specific indenting
-filetype plugin on                    " enable filetype-specific plugins
+" 開檔回到上次編輯位置
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+"  _  __            __  __                   _
+" | |/ /           |  \/  |                 (_)
+" | ' / ___ _   _  | \  / | __ _ _ __  _ __  _ _ __   __ _
+" |  < / _ \ | | | | |\/| |/ _` | '_ \| '_ \| | '_ \ / _` |
+" | . \  __/ |_| | | |  | | (_| | |_) | |_) | | | | | (_| |
+" |_|\_\___|\__, | |_|  |_|\__,_| .__/| .__/|_|_| |_|\__, |
+"            __/ |              | |   | |             __/ |
+"           |___/               |_|   |_|            |___/
 
-"-----------------------------------------------------------
-"let Vundle manage Vundle, required
+
+let mapleader=" "                    " 改變 leader
+
+nmap <C-E> V%zfzz
+nmap <C-T> yyp
+
+" 視窗切換
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-L> <C-W><C-L>
+
+" 分頁切換
+nnoremap<Tab> :tabn<CR>
+nnoremap<S-Tab> :tabp<CR>
+nnoremap<S-X> :tabclose<CR>
+
+" 水平移動
+nnoremap <leader>l 30zl
+nnoremap <leader>h 30zh
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" 縮放視窗
+nnoremap <silent><leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent><leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+
+
+"   _____          _                    ______                _
+"  / ____|        | |                  |  ____|              | |
+" | |    _   _ ___| |_ ___  _ __ ___   | |__ _   _ _ __   ___| |_
+" | |   | | | / __| __/ _ \| '_ ` _ \  |  __| | | | '_ \ / __| __|
+" | |___| |_| \__ \ || (_) | | | | | | | |  | |_| | | | | (__| |_
+"  \_____\__,_|___/\__\___/|_| |_| |_| |_|   \__,_|_| |_|\___|\__|
 "
-Plugin 'gmarik/vundle'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'c9s/colorselector.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'tmhedberg/matchit'
-Plugin 'tpope/vim-ragtag'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'sumpygump/php-documentor-vim'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/OOP-javascript-indentation'
-Plugin 'pangloss/vim-javascript'
-Plugin 'Shougo/neocomplcache.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tomtom/tlib_vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'marcweber/vim-addon-mw-utils'
-Plugin 'Valloric/MatchTagAlways'
-Plugin 'alvan/vim-closetag'
-Plugin 'vim-scripts/hexHighlight.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'IN3D/vim-raml'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'trevordmiller/nova-vim'
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'junegunn/fzf.vim'
-Plugin 'matze/vim-move'
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
-
-Plugin 'hzchirs/vim-material'
-Plugin 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 
 
-"" js
-Plugin 'othree/html5.vim'
-Plugin 'othree/yajs.vim'
-Plugin 'gavocanov/vim-js-indent'
+" 移除當前所有空白
+function! RemoveTrailingSpace()
+  %s/\s\+$//e
+endfunction
+nnoremap <leader><leader>rt :call RemoveTrailingSpace()<CR>
+
+" 快速編譯
+autocmd FileType java map<Leader>c :!javac "%:p" && java -cp "%:p:h" "%:t:r" <CR>
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+" 顯示當前 Theme Highlighting
+nnoremap <leader><leader>x :call SyntaxItem()<CR>
+function! SyntaxItem()
+    echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+                \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+                \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+endfunction
+
+"  _____  _             _          _____      _   _   _
+" |  __ \| |           (_)        / ____|    | | | | (_)
+" | |__) | |_   _  __ _ _ _ __   | (___   ___| |_| |_ _ _ __   __ _
+" |  ___/| | | | |/ _` | | '_ \   \___ \ / _ \ __| __| | '_ \ / _` |
+" | |    | | |_| | (_| | | | | |  ____) |  __/ |_| |_| | | | | (_| |
+" |_|    |_|\__,_|\__, |_|_| |_| |_____/ \___|\__|\__|_|_| |_|\__, |
+"                  __/ |                                       __/ |
+"                 |___/                                       |___/
 
 
-"
-""""""""""" Plugin Setting """""""""""""
+call plug#begin('~/.vim/plugged')
 
-"tag list (show class list)
-nmap <F1> :TagbarToggle<CR>
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'c9s/colorselector.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'matze/vim-move'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-ragtag'
+Plug 'tmhedberg/matchit'
+Plug 'easymotion/vim-easymotion'
+Plug 'sumpygump/php-documentor-vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'tomtom/tlib_vim'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'majutsushi/tagbar'
+Plug 'pangloss/vim-javascript'
+Plug 'airblade/vim-gitgutter'
+Plug 'mattn/emmet-vim'
+Plug 'garbas/vim-snipmate'
+Plug 'marcweber/vim-addon-mw-utils'
+Plug 'Valloric/MatchTagAlways'
+Plug 'alvan/vim-closetag'
+Plug 'vim-scripts/hexHighlight.vim'
+Plug 'vim-scripts/javacomplete'
+Plug 'plasticboy/vim-markdown'
+Plug 'ryanoasis/vim-devicons'
+Plug 'trevordmiller/nova-vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'othree/html5.vim'
+Plug 'othree/yajs.vim'
+Plug 'gavocanov/vim-js-indent'
+Plug 'hzchirs/vim-material'
+Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 
-"airline
+call plug#end()
+
+
+
+" ===============  Tagbar  ===============
+nmap <F5> :TagbarToggle<CR>
+autocmd VimEnter * nested :TagbarOpen
+autocmd FileType * nested :call tagbar#autoopen(0)
+
+
+" ===============  Airline  ===============
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -152,45 +208,30 @@ let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#branch#enabled = 1
+let g:airline_theme='badwolf'
 
-let g:airline_theme='kolor'
-
-"php-doc-vim
+" ===============  php-doc-vim  ===============
 au BufRead,BufNewFile *.php inoremap <buffer> <C-X> :call PhpDoc()<CR>
 au BufRead,BufNewFile *.php nnoremap <buffer> <C-X> :call PhpDoc()<CR>
 au BufRead,BufNewFile *.php vnoremap <buffer> <C-x> :call PhpDocRange()<CR>
 
-"replace the current word in all opened buffers
-fun! Replace()
 
-    let s:word = input("Replace " . expand('<cword>') . " with:")
+" ===============  nerdtree  ===============
+nnoremap <C-o> :NERDTreeToggle<CR>
 
-    :exe 'bufdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/ge'
-    :unlet! s:word
-
-endfun
-
-"nerdtree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-map <C-o> :NERDTreeToggle<CR>
-
-"vim-indent-guides
+" ============== vim-indent-guides  =============
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 3
-hi IndentGuidesOdd  ctermbg=19
-hi IndentGuidesEven ctermbg=17
+" hi IndentGuidesOdd  ctermbg=19
+" hi IndentGuidesEven ctermbg=17
 
-"Auto assigned file to filetype
-autocmd BufNewFile,BufRead *.phtml set filetype=php
-autocmd BufNewFile,BufRead *.html set filetype=html
-autocmd BufNewFile,BufRead *.htm set filetype=html
-
-"Shougo/neocomplcache.vim
+" ============== neocomplcache  ===============
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 3
@@ -214,50 +255,19 @@ let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-" easymotion
-map <Leader><Leader>j <Plug>(easymotion-j)
-map <Leader><Leader>k <Plug>(easymotion-k)
+" ============== easymotion  ===============
+nnoremap <Leader><Leader>j <Plug>(easymotion-j)
+nnoremap <Leader><Leader>k <Plug>(easymotion-k)
 
-"---  更改快捷键
-map q <Plug>(easymotion-prefix)
+map q  <Plug>(easymotion-prefix)
 map qf <Plug>(easymotion-lineforward)
 map qs <Plug>(easymotion-f)
 map qj <Plug>(easymotion-j)
 map qk <Plug>(easymotion-k)
 map qh <Plug>(easymotion-linebackward)
-" 忽略大小写
 let g:EasyMotion_smartcase = 1
 
-""""""""""" mapping HotKey """""""""""""
-nmap <C-A> ggVG      " select all
-nmap <C-E> V%zfzz    " fold section
-nmap <C-T> yyp       " copy current line and paste
-
-nmap <C-J> <C-W><C-J>
-nmap <C-K> <C-W><C-K>
-nmap <C-H> <C-W><C-H>
-nmap <C-L> <C-W><C-L>
-
-nnoremap<Tab> :tabn<CR>
-nnoremap<S-Tab> :tabp<CR>
-nnoremap<S-X> :tabclose<CR>
-
-let mapleader=" "
-nnoremap <leader>l 30zl
-nnoremap <leader>h 30zh
-nnoremap <leader>sv :source $MYVIMRC<CR>
-
-" sava file
-inoremap <C-s> <esc>:w<cr>a
-nnoremap <C-s> :w<cr>
-
-" set foldcolumn=2
-hi foldcolumn  ctermbg=235 ctermfg=white
-
-" vim-move
-let g:move_key_modifier = 'C'
-
-" matchAtag alswas
+" ============== matchAtag  ===============
 let g:mta_use_matchparen_group = 1
 let g:mta_set_default_matchtag_color = 1
 let g:mta_filetypes = {
@@ -265,19 +275,12 @@ let g:mta_filetypes = {
     \ 'phtml' : 1,
     \ 'xml' : 1,
     \ 'php' : 1,
-    \ 'jinja' : 1,
     \}
-highlight MatchTag ctermfg=black ctermbg=lightgreen guifg=black guibg=lightgreen
-
-"" " Align GitHub-flavored Markdown tables
-au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
+" hi MatchTag ctermfg=black ctermbg=lightgreen guifg=black guibg=lightgreen
 
 
-" tagbar
-" autocmd VimEnter * nested :TagbarOpen
-" autocmd FileType * nested :call tagbar#autoopen(0)
 
-
+" ============== webdevicons  ===============
 " set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
 set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline\ Nerd\ Font\ Complete\ 16
 let g:webdevicons_enable = 1
@@ -287,7 +290,7 @@ let g:webdevicons_enable_airline_statusline = 1
 " let g:webdevicons_enable_ctrlp = 1
 
 
-"" fzf
+" ============== fzf  ===============
 let g:fzf_colors =
             \ { 'fg':      ['fg', 'Normal'],
             \ 'bg':      ['bg', 'Normal'],
@@ -302,49 +305,14 @@ let g:fzf_colors =
             \ 'spinner': ['fg', 'Label'],
             \ 'header':  ['fg', 'Comment'] }
 
-" Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
-" Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'down': '5%'})
 nnoremap <silent> <C-p> :Files<CR>
-
-
-" 顯示當前 Theme Highlighting
-nnoremap <leader><leader>x :call SyntaxItem()<CR>
-function! SyntaxItem()
-    echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-                \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-                \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
-endfunction
-
-" 縮放視窗
-nnoremap <silent><leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
-nnoremap <silent><leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
-
-
-" 覆蓋主題設定
-let g:material_style='oceanic'
-colorscheme vim-material
-highlight Comment guibg='#525975' guifg='#0F111A'
-
-
-" 移除當前所有空白
-function! RemoveTrailingSpace()
-  %s/\s\+$//e
-endfunction
-nnoremap <leader><leader>rt :call RemoveTrailingSpace()<CR>
-
-set list lcs=tab:\|\ " tab indent guide
-
-" 編譯
-autocmd FileType java map<Leader>c :!javac "%:p" && java -cp "%:p:h" "%:t:r" <CR>
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
