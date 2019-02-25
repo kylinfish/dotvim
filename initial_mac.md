@@ -41,14 +41,22 @@ For initialing new macOSX environment manual.
 - fzf
 - bower
 - curl
+- [exa](https://the.exa.website/install/macos)
+- [httpie](https://httpie.org/)
+- [tldr](https://tldr.sh/)
+- [bat](https://github.com/sharkdp/bat)
+- htop
 
 
 ### install via brew
 ```
-brew install php tmux zsh ack hugo fzf composer npm mycli bower curl kubernets-cli
+brew install php tmux zsh ack hugo fzf composer npm mycli bower curl kubernets-cli httpie bat htop tldr
 ```
 
 ### install via npm
 ```
 npm install -g minify firebase-tools bower gulp
 ````
+
+### Other
+- diff-so-fancy https://github.com/so-fancy/diff-so-fancy
