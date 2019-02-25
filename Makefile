@@ -10,11 +10,10 @@ init:
 
 	ln -fs `pwd`/.tmux.conf ~/.tmux.conf
 	ln -fs `pwd`/.tmux.conf.local ~/.tmux.conf.local
-	ln -fs `pwd`/.vimrc ~/.vimrc
 	ln -fs `pwd`/.vim ~/.vim
+	ln -fs `pwd`/.vimrc ~/.vimrc
 	ln -fs `pwd`/.ackrc ~/.ackrc
 	ln -fs `pwd`/.tldrrc ~/.tldrrc
-
 
 update:
 	git pull
