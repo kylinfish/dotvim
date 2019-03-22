@@ -80,7 +80,10 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 
 let mapleader=" "                    " 改變 leader
 
+" 視窗折疊
 nmap <C-E> V%zfzz
+
+" 複製單行
 nmap <C-T> yyp
 
 " 視窗切換
