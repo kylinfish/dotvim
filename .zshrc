@@ -1,7 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="dracula"
+# ZSH_THEME="dracula"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 ZSH_CUSTOM="$ZSH/custom"
 ZSH_DISABLE_COMPFIX=true
 plugins=(git zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
@@ -17,9 +18,15 @@ export EDITOR="$VISUAL"
 export TERM="xterm-256color"
 # export PAGER="most -s"
 
+alias color='~/github/colorize/colorize.py'
+
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 export PATH="/Users/win/.composer/vendor/bin/:$PATH"
+# Local MySQL
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/bin/gradle-4.10.2/bin:$PATH"
 
 # aliases
 alias a='ack'
@@ -27,8 +34,8 @@ alias tmux="tmux -2"
 alias today="date '+%Y%m%d'"
 alias h='history'
 alias g='grep -rin'
-alias l='ls -FGS|color'
-alias ll='ls -ahlF|color'
+alias l='ls -FGS | color'
+alias ll='ls -ahlF'
 
 alias cat='bat'
 alias help='tldr'
@@ -58,9 +65,6 @@ alias composerload="composer dump-autoload"
 ## path
 alias towork='cd ~/work/'
 alias togit='cd ~/github'
-alias topix='cd ~/pixnet'
-alias tobe='cd ~/pixnet/pixbehavior/api/behavior.pixplug.in'
-
 
 ## git
 alias gst='git status'
@@ -80,14 +84,6 @@ alias klog='kubectl logs -f --tail=5'
 alias kexec='kubectl exec -it'
 alias kpods='kubectl get pods'
 
-# PIXNET
-alias ssha='ssh win@aqua.srv.pixnet'
-alias sshirc='ssh win@irc.pixnet.tw -p222'
-alias irc='mosh --ssh="ssh -p 222" win@irc.pixnet.tw'
-alias aqua='mosh --ssh="ssh" win@aqua.srv.pixnet'
-alias phab='php /Users/win/pixnet/phabricommit'
-
-
 bindkey -e
 bindkey "\e\eOD" backward-word
 bindkey "\e\eOC" forward-word
@@ -103,6 +99,16 @@ if [ -f '/Users/win/Documents/google-cloud-sdk/path.zsh.inc' ]; then source '/Us
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/win/Documents/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/win/Documents/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Theme Setting
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time dir dir_writable vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+
+# python env
+export PYTHONPATH=${PWD}
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 
 # Local MySQL
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"

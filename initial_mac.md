@@ -50,7 +50,7 @@ For initialing new macOSX environment manual.
 
 ### install via brew
 ```
-brew install php tmux zsh ack hugo fzf composer npm mycli bower curl kubernets-cli httpie bat htop tldr
+brew install tig php tmux zsh ack hugo fzf composer npm mycli bower curl kubernets-cli httpie bat htop tldr
 ```
 
 ### install via npm
@@ -58,5 +58,10 @@ brew install php tmux zsh ack hugo fzf composer npm mycli bower curl kubernets-c
 npm install -g minify firebase-tools bower gulp
 ````
 
+### install via pip
+
+pip install boto3 awscli
+
 ### Other
 - diff-so-fancy https://github.com/so-fancy/diff-so-fancy
+

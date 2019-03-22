@@ -26,7 +26,7 @@ set ignorecase                        " ignore case when searching
 set smartcase
 set smarttab                          " insert tabs on the start of a line according to
 set expandtab                         " replace <TAB> with spaces
-set softtabstop=2
+set softtabstop=4
 set shiftwidth=4
 set tabstop=4
 set background=dark
@@ -49,14 +49,18 @@ set ttimeoutlen=0
 set noswapfile
 set mouse=nv                          " only use mouse in normal, visual mode
 set encoding=utf-8
+set showcmd
 
 syntax on                             " syntax highlight
 syntax enable
+
+filetype indent plugin on
 
 " 強制指定 filetype
 autocmd BufNewFile,BufRead *.phtml set filetype=php
 autocmd BufNewFile,BufRead *.html set filetype=html
 autocmd BufNewFile,BufRead *.htm set filetype=html
+autocmd BufNewFile,BufRead *.template set filetype=json
 
 " unchange cllipboard
 xnoremap p pgvy
@@ -99,6 +103,8 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <silent><leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent><leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 
+" 呼叫 Pydoc
+nnoremap <buffer> T :<C-u>execute "!pydoc " . expand("<cword>")<CR>
 
 "   _____          _                    ______                _
 "  / ____|        | |                  |  ____|              | |
@@ -118,6 +124,18 @@ nnoremap <leader><leader>rt :call RemoveTrailingSpace()<CR>
 " 快速編譯
 autocmd FileType java map<Leader>c :!javac "%:p" && java -cp "%:p:h" "%:t:r" <CR>
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+" 快速編譯
+map <F4> : call CompileRun()<CR>
+func! CompileRun()
+    exec "w"
+    if &filetype =='python'
+        exec "!time python2.7 %"
+    elseif &filetype =='java'
+        exec "!javac %"
+        exec "!time ./&<"
+    endif
+endfunc
 
 " 顯示當前 Theme Highlighting
 nnoremap <leader><leader>x :call SyntaxItem()<CR>
@@ -153,6 +171,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-fugitive'
 Plug 'tmhedberg/matchit'
 Plug 'easymotion/vim-easymotion'
 Plug 'sumpygump/php-documentor-vim'
@@ -183,6 +202,14 @@ Plug 'othree/yajs.vim'
 Plug 'gavocanov/vim-js-indent'
 Plug 'hzchirs/vim-material'
 Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
+Plug 'honza/vim-snippets'
+
+" Python
+" Plug 'davidhalter/jedi-vim'
+Plug 'heavenshell/vim-pydocstring'
+Plug 'maralla/completor.vim'
+Plug 'tell-k/vim-autopep8'
+Plug 'vim-scripts/indentpython.vim'
 
 call plug#end()
 
@@ -220,7 +247,6 @@ au BufRead,BufNewFile *.php vnoremap <buffer> <C-x> :call PhpDocRange()<CR>
 nnoremap <C-o> :NERDTreeToggle<CR>
 
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " ============== vim-indent-guides  =============
@@ -316,3 +342,11 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'down': '5%'})
 nnoremap <silent> <C-p> :Files<CR>
+
+" =========== pydocstring =============
+nmap <silent> <C-X> <Plug>(pydocstring)
+
+" ========== autopep8 =============
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+let g:autopep8_max_line_length=120
+let g:autopep8_diff_type='vertical'
