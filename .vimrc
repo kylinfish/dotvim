@@ -1,4 +1,4 @@
-colorscheme winyu
+colorscheme PaperColor
 
 set backspace=2                       " allow backspacing over everything in insert nc >kkmode
 set history=1000                      " keep 1000 lines of command line history
@@ -32,12 +32,36 @@ set tabstop=4
 set background=dark
 set list
 set listchars=tab:>-,trail:-
+" End Python
+
+" JAVA
+au BufNewFile,BufRead *.java set noexpandtab
+au BufNewFile,BufRead *.java set nolist
+let g:indent_guides_enable_on_vim_startup = 1
+let java_mark_braces_in_parens_as_errors=1
+let java_highlight_all=1
+let java_highlight_debug=1
+let java_ignore_javadoc=1
+let java_highlight_java_lang_ids=1
+let java_highlight_functions="style"
+let java_minlines = 150
+" END JAVA
+
+" Vue
+au BufNewFile,BufRead *.html,*.js,*.vue set tabstop=4
+au BufNewFile,BufRead *.html,*.js,*.vue set softtabstop=4
+au BufNewFile,BufRead *.html,*.js,*.vue set shiftwidth=4
+au BufNewFile,BufRead *.html,*.js,*.vue set autoindent
+au BufNewFile,BufRead *.html,*.js,*.vue set fileformat=unix
+" End Vue
+
 set hlsearch                          " search highlighting
 set incsearch                         " incremental search
-set t_Co=256
+set background=dark
+set termguicolors
 set nocompatible                      " be iMproved, required
 set laststatus=2
-set colorcolumn=120                   " set width hint line
+set colorcolumn=125                   " set width hint line
 set autoindent
 "set scrolloff=999                     " like always zz
 set splitright                        " new window is put right of the current one
@@ -115,7 +139,7 @@ nnoremap <buffer> T :<C-u>execute "!pydoc " . expand("<cword>")<CR>
 " | |   | | | / __| __/ _ \| '_ ` _ \  |  __| | | | '_ \ / __| __|
 " | |___| |_| \__ \ || (_) | | | | | | | |  | |_| | | | | (__| |_
 "  \_____\__,_|___/\__\___/|_| |_| |_| |_|   \__,_|_| |_|\___|\__|
-"
+"                      custom function
 
 
 " 移除當前所有空白
@@ -134,9 +158,6 @@ func! CompileRun()
     exec "w"
     if &filetype =='python'
         exec "!time python2.7 %"
-    elseif &filetype =='java'
-        exec "!javac %"
-        exec "!time ./&<"
     endif
 endfunc
 
@@ -196,7 +217,7 @@ Plug 'vim-scripts/javacomplete'
 Plug 'plasticboy/vim-markdown'
 Plug 'ryanoasis/vim-devicons'
 Plug 'trevordmiller/nova-vim'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -206,13 +227,20 @@ Plug 'gavocanov/vim-js-indent'
 Plug 'hzchirs/vim-material'
 Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 Plug 'honza/vim-snippets'
+Plug 'mhinz/vim-startify'
+Plug 'w0rp/ale'
+Plug 'nicwest/vim-camelsnek'
 
 " Python
-" Plug 'davidhalter/jedi-vim'
+" Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'heavenshell/vim-pydocstring'
 Plug 'maralla/completor.vim'
 Plug 'tell-k/vim-autopep8'
 Plug 'vim-scripts/indentpython.vim'
+" Plug 'vim-python/python-syntax'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'tmhedberg/SimpylFold'
 
 call plug#end()
 
@@ -251,14 +279,22 @@ nnoremap <C-o> :NERDTreeToggle<CR>
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 " ============== vim-indent-guides  =============
-let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 3
-" hi IndentGuidesOdd  ctermbg=19
-" hi IndentGuidesEven ctermbg=17
+let g:indent_guides_start_level = 2
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=237
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=blue  ctermbg=240
+
+
+" let g:indentLine_color_term = 239
+" let g:indentLine_bgcolor_term = 241
+" let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+" let g:indentLine_conceallevel = 2
+"
 
 " ============== neocomplcache  ===============
 let g:neocomplcache_enable_at_startup = 1
@@ -351,5 +387,38 @@ nmap <silent> <C-X> <Plug>(pydocstring)
 
 " ========== autopep8 =============
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
-let g:autopep8_max_line_length=120
+let g:autopep8_max_line_length=125
 let g:autopep8_diff_type='vertical'
+
+" ===== python-mode ==============
+let g:pymode_options_max_line_length = 125
+let g:pymode_lint_on_write = 0
+let g:pymode_lint_unmodified = 1
+
+
+" ========= General ==============
+"  Highlight python docstrings as comments
+syn region Comment start=/"""/ end=/"""/
+
+
+" ========== ALE =================
+let g:airline#extensions#ale#enabled = 1
+let g:ale_fix_on_save = 0
+let g:ale_completion_enabled = 1
+let g:ale_sign_column_always = 1
+let b:ale_linters = ['flake8', 'pylint']
+let b:ale_fixers = ['autopep8']
+let g:ale_list_window_size = 5
+let g:ale_python_flake8_change_directory = 1
+let g:ale_python_flake8_options = "-m flake8 --max-line-length=125"
+let g:ale_python_flake8_executable = "python"   " or 'python3' 
+let python_highlight_all=1
+
+" Ignore dirty Java 
+let g:ale_pattern_options = {
+\ '.java$': {'ale_linters': [], 'ale_fixers': []},
+\}
+let g:ale_pattern_options_enabled = 1
+
+highlight ALEWarning ctermbg=DarkMagenta
+

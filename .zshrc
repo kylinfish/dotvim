@@ -18,7 +18,8 @@ export EDITOR="$VISUAL"
 export TERM="xterm-256color"
 # export PAGER="most -s"
 
-alias color='~/github/colorize/colorize.py'
+alias color='python ~/github/colorize/colorize.py'
+alias pycolor="echo print('\033[3{0}m').format(random.randrange(1, 7))"
 
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
@@ -62,6 +63,11 @@ alias phpunit='./vendor/bin/phpunit'
 alias composer="/usr/local/bin/composer"
 alias composerload="composer dump-autoload"
 
+## Python
+alias py='bpython'
+alias py3='python3'
+alias jupyter="/anaconda2/bin/jupyter_mac.command"
+
 ## path
 alias towork='cd ~/work/'
 alias togit='cd ~/github'
@@ -78,6 +84,7 @@ alias gcm='git commit -m'
 alias amend='git commit --amend'
 alias gpr='git pull --rebase origin master'
 alias gpv='git pull --rebase origin master'
+alias gcp='git cherry-pick'
 
 # k8s
 alias klog='kubectl logs -f --tail=5'
@@ -103,9 +110,19 @@ if [ -f '/Users/win/Documents/google-cloud-sdk/completion.zsh.inc' ]; then sourc
 # Theme Setting
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time dir dir_writable vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_VCS_HIDE_TAGS=true
+
+# JAVA
+export JAVA_HOME=$(/usr/libexec/java_home)
+export PATH=$JAVA_HOME/bin:$PATH
 
 # python env
 export PYTHONPATH=${PWD}
+
+# pip install --user
+export PY_USER_BIN='/Users/win_yu/Library/Python/2.7/bin'
+export PATH=$PY_USER_BIN:$PATH
+
 # export PYENV_ROOT="$HOME/.pyenv"
 # export PATH="$PYENV_ROOT/bin:$PATH"
 # eval "$(pyenv init -)"
