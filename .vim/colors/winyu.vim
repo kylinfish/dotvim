@@ -132,3 +132,18 @@ hi erubyDelimiter ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui
 hi erubyComment ctermfg=68 ctermbg=NONE cterm=NONE guifg=#5c98cd guibg=NONE gui=NONE
 hi erubyRailsMethod ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
 
+"JAVA
+"
+" hi javaExternal' . s:fg_pink
+" hi javaAnnotation' . s:fg_orange
+" hi javaTypedef' . s:fg_aqua
+" hi javaClassDecl' . s:fg_aqua . s:ft_bold
+" hi javaScopeDecl' . s:fg_blue . s:ft_bold
+" hi javaStorageClass' . s:fg_navy . s:ft_bold
+" hi javaBoolean' . s:fg_green . s:ft_bold
+" hi javaConstant' . s:fg_blue
+" hi javaCommentTitle' . s:fg_wine
+" hi javaDocTags' . s:fg_aqua
+" hi javaDocComment' . s:fg_comment
+" hi javaDocParam' . s:fg_foreground
+" hi javaStatement' . s:fg_pink

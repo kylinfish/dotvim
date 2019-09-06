@@ -7,7 +7,6 @@ set ruler                             " show the cursor position all the time
 set autoread                          " auto read when file is changed from outside
 set nowrap
 set linebreak
-set nolist
 set hidden
 set linespace=0
 set nofoldenable
@@ -25,12 +24,12 @@ set noswapfile
 set ignorecase                        " ignore case when searching
 set smartcase
 set smarttab                          " insert tabs on the start of a line according to
-set expandtab                         " replace <TAB> with spaces
 set softtabstop=4
 set shiftwidth=4
 set tabstop=4
-set background=dark
-set list
+set expandtab                         " replace <TAB> with spaces
+
+" Python
 set listchars=tab:>-,trail:-
 " End Python
 
@@ -100,6 +99,7 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 " |_|\_\___|\__, | |_|  |_|\__,_| .__/| .__/|_|_| |_|\__, |
 "            __/ |              | |   | |             __/ |
 "           |___/               |_|   |_|            |___/
+"                       key mapping
 
 
 let mapleader=" "                    " 改變 leader
@@ -158,6 +158,8 @@ func! CompileRun()
     exec "w"
     if &filetype =='python'
         exec "!time python2.7 %"
+    elseif &filetype =='php'
+        exec "!time php %"
     endif
 endfunc
 
@@ -201,8 +203,10 @@ Plug 'easymotion/vim-easymotion'
 Plug 'sumpygump/php-documentor-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'tomtom/tlib_vim'
+Plug 'luochen1990/rainbow'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'majutsushi/tagbar'
 Plug 'pangloss/vim-javascript'
@@ -232,15 +236,19 @@ Plug 'w0rp/ale'
 Plug 'nicwest/vim-camelsnek'
 
 " Python
-" Plug 'python-mode/python-mode', { 'branch': 'develop' }
+"Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'heavenshell/vim-pydocstring'
 Plug 'maralla/completor.vim'
 Plug 'tell-k/vim-autopep8'
 Plug 'vim-scripts/indentpython.vim'
-" Plug 'vim-python/python-syntax'
+Plug 'vim-python/python-syntax'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'tmhedberg/SimpylFold'
+
+"flutter
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
 
 call plug#end()
 
@@ -422,3 +430,23 @@ let g:ale_pattern_options_enabled = 1
 
 highlight ALEWarning ctermbg=DarkMagenta
 
+
+" ========== Rainbow =================
+let g:rainbow_active = 1 
+
+
+" ========== Limelight ===============
+let g:limelight_default_coefficient = 0.1
+nmap <Leader>n <Plug>(Limelight)
+
+
+
+" ========== flutter ================
+
+" Some of these key choices were arbitrary;
+" it's just an example.
+nnoremap <leader>fa :FlutterRun<cr>
+nnoremap <leader>fq :FlutterQuit<cr>
+nnoremap <leader>fr :FlutterHotReload<cr>
+nnoremap <leader>fR :FlutterHotRestart<cr>
+nnoremap <leader>fD :FlutterVisualDebug<cr>
