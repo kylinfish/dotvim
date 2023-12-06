@@ -422,3 +422,18 @@ autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
 
 set tags+=tags
+
+function! GoToDefinitionSplit()
+    " 捕獲當前光標下的單詞
+    let word = expand('<cword>')
+
+    " 嘗試找到並跳轉到標籤
+    let taglist = taglist('^' . word . '$')
+    if len(taglist) > 0
+        execute 'vsplit ' . taglist[0].filename
+        execute 'silent! ' . taglist[0].cmd
+    endif
+endfunction
+
+" 將 Ctrl-] 映射到自定義函數
+nnoremap <C-]> :call GoToDefinitionSplit()<CR>
