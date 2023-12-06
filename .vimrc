@@ -1,4 +1,4 @@
-colorscheme PaperColor
+colorscheme onehalfdark
 
 set backspace=2                       " allow backspacing over everything in insert nc >kkmode
 set history=1000                      " keep 1000 lines of command line history
@@ -133,6 +133,12 @@ nnoremap <silent><leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 " 呼叫 Pydoc
 nnoremap <buffer> T :<C-u>execute "!pydoc " . expand("<cword>")<CR>
 
+" ALE Jump
+nnoremap <S-J> :ALEGoToDefinition -vsplit<CR>
+nnoremap <S-K> :ALEGoToTypeDefinition -vsplit<CR>
+nnoremap <S-L> :ALEGoToImplementation -vsplit<CR>
+nnoremap <S-H> :ALEFindReferences -vsplit<CR>
+
 "   _____          _                    ______                _
 "  / ____|        | |                  |  ____|              | |
 " | |    _   _ ___| |_ ___  _ __ ___   | |__ _   _ _ __   ___| |_
@@ -141,23 +147,12 @@ nnoremap <buffer> T :<C-u>execute "!pydoc " . expand("<cword>")<CR>
 "  \_____\__,_|___/\__\___/|_| |_| |_| |_|   \__,_|_| |_|\___|\__|
 "                      custom function
 
-
-" 移除當前所有空白
-function! RemoveTrailingSpace()
-  %s/\s\+$//e
-endfunction
-nnoremap <leader><leader>rt :call RemoveTrailingSpace()<CR>
-
-" 快速編譯
-autocmd FileType java map<Leader>c :!javac "%:p" && java -cp "%:p:h" "%:t:r" <CR>
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
 " 快速編譯
 map <F4> : call CompileRun()<CR>
 func! CompileRun()
     exec "w"
     if &filetype =='python'
-        exec "!time python2.7 %"
+        exec "!time python %"
     elseif &filetype =='php'
         exec "!time php %"
     endif
@@ -200,40 +195,41 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-fugitive'
 Plug 'tmhedberg/matchit'
 Plug 'easymotion/vim-easymotion'
-Plug 'sumpygump/php-documentor-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'tomtom/tlib_vim'
 Plug 'luochen1990/rainbow'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'nathanaelkane/vim-indent-guides'
-" Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'majutsushi/tagbar'
 Plug 'pangloss/vim-javascript'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
-Plug 'garbas/vim-snipmate'
 Plug 'marcweber/vim-addon-mw-utils'
 Plug 'Valloric/MatchTagAlways'
 Plug 'alvan/vim-closetag'
 Plug 'vim-scripts/hexHighlight.vim'
-Plug 'vim-scripts/javacomplete'
-Plug 'plasticboy/vim-markdown'
+Plug 'storyn26383/vim-autoclose'
 Plug 'ryanoasis/vim-devicons'
-Plug 'trevordmiller/nova-vim'
-" Plug 'vim-syntastic/syntastic'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'SirVer/ultisnips'
 Plug 'othree/html5.vim'
 Plug 'othree/yajs.vim'
 Plug 'gavocanov/vim-js-indent'
 Plug 'hzchirs/vim-material'
-Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
-Plug 'honza/vim-snippets'
 Plug 'mhinz/vim-startify'
 Plug 'w0rp/ale'
 Plug 'nicwest/vim-camelsnek'
+Plug 'salsifis/vim-transpose'
+Plug 'nvim-tree/nvim-web-devicons'
+"Plug 'rafi/awesome-vim-colorschemes'
+Plug 'lilydjwg/colorizer'
+
+" PHP
+"Plug 'phpactor/phpactor', { 'for': 'php', 'do': 'composer install' }
+Plug 'sumpygump/php-documentor-vim'
+Plug 'arnaud-lb/vim-php-namespace'
 
 " Python
 "Plug 'python-mode/python-mode', { 'branch': 'develop' }
@@ -246,18 +242,13 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'tmhedberg/SimpylFold'
 
-"flutter
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'thosakwe/vim-flutter'
-
 call plug#end()
 
 
 
 " ===============  Tagbar  ===============
 nmap <F5> :TagbarToggle<CR>
-autocmd VimEnter * nested :TagbarOpen
-autocmd FileType * nested :call tagbar#autoopen(0)
+au BufRead *.py :let g:tagbar_show_visibility = 1
 
 
 " ===============  Airline  ===============
@@ -289,31 +280,10 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
-" ============== vim-indent-guides  =============
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=237
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=blue  ctermbg=240
-
-
-" let g:indentLine_color_term = 239
-" let g:indentLine_bgcolor_term = 241
-" let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-" let g:indentLine_conceallevel = 2
-"
-
-" ============== neocomplcache  ===============
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+let g:indentLine_color_term = 239
+let g:indentLine_bgcolor_term = 241
+let g:indentLine_char_list = ['┊']
+let g:indentLine_conceallevel = 2
 
 "let g:neocomplcache_enable_auto_select = 1
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -390,9 +360,6 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'down': '5%'})
 nnoremap <silent> <C-p> :Files<CR>
 
-" =========== pydocstring =============
-nmap <silent> <C-X> <Plug>(pydocstring)
-
 " ========== autopep8 =============
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 let g:autopep8_max_line_length=125
@@ -411,42 +378,47 @@ syn region Comment start=/"""/ end=/"""/
 
 " ========== ALE =================
 let g:airline#extensions#ale#enabled = 1
-let g:ale_fix_on_save = 0
+let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let b:ale_linters = ['flake8', 'pylint']
-let b:ale_fixers = ['autopep8']
 let g:ale_list_window_size = 5
 let g:ale_python_flake8_change_directory = 1
-let g:ale_python_flake8_options = "-m flake8 --max-line-length=125"
-let g:ale_python_flake8_executable = "python"   " or 'python3' 
+let g:ale_python_flake8_options = "-m flake8 --max-line-length=120"
+let g:ale_python_flake8_executable = "python3"
+let g:ale_python_pylint_options = '--rcfile '.expand('~/.vim/.pylintrc')
 let python_highlight_all=1
 
-" Ignore dirty Java 
-let g:ale_pattern_options = {
-\ '.java$': {'ale_linters': [], 'ale_fixers': []},
+" In ~/.vim/vimrc, or somewhere similar.
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'vue': ['prettier'],
+\   'php': ['pint', 'php_cs_fixer'],
+\   'python': ['autopep8'],
 \}
-let g:ale_pattern_options_enabled = 1
 
 highlight ALEWarning ctermbg=DarkMagenta
 
 
 " ========== Rainbow =================
-let g:rainbow_active = 1 
+let g:rainbow_active = 1
 
 
 " ========== Limelight ===============
 let g:limelight_default_coefficient = 0.1
 nmap <Leader>n <Plug>(Limelight)
 
+nmap <Leader>b :exec "!tig blame '%' +".line('.')<CR>
 
 
-" ========== flutter ================
+" ==========PHP Namespace==============
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
-" Some of these key choices were arbitrary;
-" it's just an example.
-nnoremap <leader>fa :FlutterRun<cr>
-nnoremap <leader>fq :FlutterQuit<cr>
-nnoremap <leader>fr :FlutterHotReload<cr>
-nnoremap <leader>fR :FlutterHotRestart<cr>
-nnoremap <leader>fD :FlutterVisualDebug<cr>
+
+set tags+=tags
