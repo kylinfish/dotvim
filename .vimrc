@@ -33,18 +33,6 @@ set expandtab                         " replace <TAB> with spaces
 set listchars=tab:>-,trail:-
 " End Python
 
-" JAVA
-au BufNewFile,BufRead *.java set noexpandtab
-au BufNewFile,BufRead *.java set nolist
-let g:indent_guides_enable_on_vim_startup = 1
-let java_mark_braces_in_parens_as_errors=1
-let java_highlight_all=1
-let java_highlight_debug=1
-let java_ignore_javadoc=1
-let java_highlight_java_lang_ids=1
-let java_highlight_functions="style"
-let java_minlines = 150
-" END JAVA
 
 " Vue
 au BufNewFile,BufRead *.html,*.js,*.vue set tabstop=4
@@ -134,7 +122,6 @@ nnoremap <silent><leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 nnoremap <buffer> T :<C-u>execute "!pydoc " . expand("<cword>")<CR>
 
 " ALE Jump
-nnoremap <S-J> :ALEGoToDefinition -vsplit<CR>
 nnoremap <S-K> :ALEGoToTypeDefinition -vsplit<CR>
 nnoremap <S-L> :ALEGoToImplementation -vsplit<CR>
 nnoremap <S-H> :ALEFindReferences -vsplit<CR>
