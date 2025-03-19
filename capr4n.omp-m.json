@@ -1,0 +1,119 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "right",
+      "segments": [
+          {
+              "type": "aws",
+              "style": "powerline",
+              "powerline_symbol": "\uE0B0",
+              "foreground": "#ffffff",
+              "background": "#ff9248",
+              "properties": {
+                  "prefix": "\uE7AD ",
+                  "display_default": false,
+                  "display_region": true,
+                  "template": "{{.Profile}}{{if .Region}}@{{.Region}}{{end}}"
+              }
+          },
+          {
+              "type": "terraform",
+              "style": "powerline",
+              "powerline_symbol": "\uE0B0",
+              "foreground": "#100e23",
+              "background": "#1e88e5",
+              "properties": {
+                  "prefix": "\uF1BB ",
+                  "display_version": true,
+                  "display_workspace": true
+              }
+          },
+          {
+              "type": "python",
+              "style": "powerline",
+              "powerline_symbol": "\uE0B0",
+              "foreground": "#100e23",
+              "background": "#906cff",
+              "properties": {
+                  "prefix": "\uE235 ",
+                  "display_mode": "environment",
+                  "display_virtual_env": true,
+                  "display_version": false
+              }
+          },
+          {
+              "background": "#003543",
+              "foreground": "#ffffff",
+              "style": "plain",
+              "template": " \ue641 {{ .CurrentDate | date .Format }} ",
+              "type": "time"
+          },
+          {
+              "background": "#83769c",
+              "foreground": "#ffffff",
+              "properties": {
+                  "always_enabled": true
+              },
+              "style": "plain",
+              "template": " \ueba2 {{ .FormattedMs }} ",
+              "type": "executiontime"
+          }
+      ],
+      "type": "rprompt"
+    },
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "background": "#61AFEF",
+          "foreground": "#ffffff",
+          "properties": {
+            "display_host": false
+          },
+          "style": "diamond",
+          "template": "{{if .Root}} \uf0e7 {{.UserName}} {{else}} {{.UserName}} {{end}}",
+          "trailing_diamond": "\ue0b0",
+          "type": "session"
+        },
+        {
+          "background": "#C678DD",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "folder_icon": "\uf115",
+            "folder_separator_icon": " \ue0b1 ",
+            "max_depth": 2,
+            "style": "agnoster_short"
+          },
+          "style": "powerline",
+          "template": " {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "background": "#95ffa4",
+          "foreground": "#193549",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " {{ .HEAD }} ",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+        "type": "path",
+        "style": "powerline",
+        "foreground": "#FFFFFF",   // 設置文字顏色
+        "background": "#005F87",   // 設置背景顏色
+        "properties": {
+            "folder_color": "#00FF00",  // 文件夾顏色（綠色）
+            "file_color": "#FFD700",    // 普通文件顏色（金色）
+            "symlink_color": "#00FFFF"  // 符號鏈接顏色（青色）
+        }
+    }
+  ],
+  "console_title_template": "{{if .Root}} \u26a1 {{end}}{{.UserName}} \u2794 📁{{.Folder}}",
+  "final_space": true,
+  "version": 3
+}
