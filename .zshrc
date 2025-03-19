@@ -1,33 +1,16 @@
-export TERM="xterm-256color"
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+eval "$(oh-my-posh init zsh --config $HOME/github/dotvim/capr4n.omp-m.json)"
 
-# ZSH_THEME="dracula"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+export TERM="xterm-256color"
+
 ZSH_CUSTOM="$ZSH/custom"
 ZSH_DISABLE_COMPFIX=true
-plugins=(git zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
 
-# zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
-source $ZSH/oh-my-zsh.sh
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export VISUAL=vim
 export EDITOR="$VISUAL"
-# export PAGER="most -s"
-
-alias color='python ~/github/colorize/colorize.py'
-alias pycolor="echo print('\033[3{0}m').format(random.randrange(1, 7))"
-
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/gettext/bin:$PATH"
-export PATH="/Users/win/.composer/vendor/bin/:$PATH"
-# Local MySQL
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/bin/gradle-4.10.2/bin:$PATH"
+export PAGER="most -s"
 
 # aliases
 alias a='ack'
@@ -35,10 +18,13 @@ alias tmux="tmux -2"
 alias today="date '+%Y%m%d'"
 alias h='history'
 alias g='grep -rin'
-alias lc='colorls --sd'
-alias l='colorls -lA --sd'
 
-alias cat='bat'
+## EXA
+alias ls="ls --color=auto"
+alias ll="exa -lh --git --sort=type --icons"
+alias tree="exa -T -L 2 --icons"
+alias dir='ls -l'
+
 alias help='tldr'
 alias json='fx'
 
@@ -52,28 +38,14 @@ alias delswp="findswp; find . -name '*.swp' | xargs rm"
 
 alias lm='ls -al'
 alias rm='rm -i'
-alias dir='ls -l'
 alias c='clear'
 alias tat='tmux attach -t'
 alias lcat='lolcat'
 
-alias -s py=vim
-alias -s php=vim
-alias -s html=vim
-alias -s js=vim
-alias -s css=vim
-
-## PHP
-alias lumen='php -S localhost:8080 public/index.php'
-alias pa='php artisan'
-alias phpunit='./vendor/bin/phpunit'
-alias composer="/usr/local/bin/composer"
-alias composerload="composer dump-autoload"
 
 ## Python
-alias py='bpython'
+alias python='python3'
 alias py3='python3'
-alias jupyter="/anaconda2/bin/jupyter_mac.command"
 
 ## path
 alias towork='cd ~/work/'
@@ -99,42 +71,48 @@ alias klog='kubectl logs -f --tail=5'
 alias kexec='kubectl exec -it'
 alias kpods='kubectl get pods'
 
-bindkey -e
-bindkey "\e\eOD" backward-word
-bindkey "\e\eOC" forward-word
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/win/Documents/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/win/Documents/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/win/Documents/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/win/Documents/google-cloud-sdk/completion.zsh.inc'; fi
-
-# Theme Setting
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_VCS_HIDE_TAGS=true
-
-# JAVA
-export JAVA_HOME=$(/usr/libexec/java_home)
-export PATH=$JAVA_HOME/bin:$PATH
 
 # python env
 export PYTHONPATH=${PWD}
 
-# pip install --user
-export PY_USER_BIN='/Users/win_yu/Library/Python/2.7/bin'
-export PATH=$PY_USER_BIN:$PATH
 
 # export PYENV_ROOT="$HOME/.pyenv"
 # export PATH="$PYENV_ROOT/bin:$PATH"
 # eval "$(pyenv init -)"
 
-# Local MySQL
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+
+ZINIT_NO_AUTHENTICATION=1
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zsh-users/zsh-syntax-highlighting \
+    zsh-users/zsh-autosuggestions \
+    zsh-users/zsh-completions \
+    Aloxaf/fzf-tab \
+    djui/alias-tips \
+    MichaelAquilina/zsh-you-should-use \
+    jeffreytse/zsh-vi-mode
+
+
+zinit snippet OMZ::plugins/virtualenv/virtualenv.plugin.zsh
+
+### End of Zinit's installer chunk
+#
