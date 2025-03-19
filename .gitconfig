@@ -1,14 +1,24 @@
 [user]
-    name = win
-    email = win@pixnet.tw
+    name = kylinfish
+    email = kylinfish@gmail.com
 
 [core]
     editor = vim
     excludesfile = ~/.gitignore_global
     pager = diff-so-fancy | less --tabs=4 -RFX
 
+[pull]
+    rebase = true
+
 [push]
     default = simple
+    autoSetupRemote = true
+    followTags = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
 
 [alias]
     cm = commit -a
@@ -19,6 +29,14 @@
     lg  = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
     lg1 = log --graph --date=iso --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset'
 
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+
+[init]
+    defaultBranch = main
 
 [color]
     ui = auto
@@ -43,15 +61,23 @@
     untracked = red bold
 
 [diff]
-    tool = vimdiff
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+
 
 [url "https://"]
     insteadOf = git://
 
 [url "https://github.com/"]
     insteadOf = git://github.com/
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
