@@ -6,6 +6,9 @@
 --ignore-dir=node_modules/
 --ignore-dir=.git
 --ignore-dir=.svn
+--ignore-dir=venv/
+--ignore-dir=.venv/
+--ignore-dir=src/venv/
 
 --type-add=php:ext:phtml,phps
 
